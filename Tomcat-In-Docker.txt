@@ -1,0 +1,64 @@
+yum install java-1.8*
+java -version
+ls -la
+vi .bash_profile
+-----------------------------------------------------------------------------------------
+# .bash_profile
+
+# Get the aliases and functions
+if [ -f ~/.bashrc ]; then
+	. ~/.bashrc
+fi
+
+# User specific environment and startup programs
+
+JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.212.b04-0.el7_6.x86_64
+PATH=$PATH:$JAVA_HOME
+export PATH
+----------------------------------------------------------------------------------------
+sudo su
+yum install docker
+service docker start
+service docker status
+docker pull tomcat
+docker image ls
+docker run -d -p 90:8080 tomcat
+curl http://15.206.175.188:90
+docker container ls -a
+docker exec -it 6acd44f53b69 /bin/bash      // Container ID
+cd webapps/
+ls -l
+exit
+docker image ls
+docker container ls
+docker commit 6acd44f53b69 tomcat_crust		// Container ID
+docker container ls
+docker image ls
+docker stop 6acd44f53b69                     // // Container ID
+docker container rm 6acd44f53b69 			// Container ID
+docker image ls
+docker run -d -p 90:8080 tomcat_crust
+docker container ls
+docker exec -it b077a5b1b005 /bin/bash		// Container ID
+cd webapps/
+ls -l
+exit
+mkdir karthik
+cd karthik/
+touch index.html
+echo "I am Karthik" > index.html
+cat > Dockerfile
+	FROM tomcat:latest
+	WORKDIR /usr/local/tomcat/webapps/karthik
+	ADD . . 
+	EXPOSE 8080
+	ENV NAME tomcat_crust
+ctrl + C	
+su - ec2-user
+cd
+sudo docker build /home/ec2-user/karthik -t tomcat_crust
+sudo docker image ls
+sudo docker container ls
+sudo docker container rm 64366aaf88bc -f
+sudo docker container ls
+sudo docker run -d -p 90:8080 tomcat_crust
